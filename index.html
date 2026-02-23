@@ -64,17 +64,20 @@
       }
       .cover-gif-frame {
         width: 100%;
-        aspect-ratio: 3/4;
         border: 2px solid rgba(201,169,110,0.6);
         outline: 1px solid rgba(201,169,110,0.2);
         outline-offset: 5px;
         overflow: hidden;
         position: relative;
         background: #2a2520;
+        /* Tinggi ikut GIF asli — tidak ada crop sama sekali */
       }
       .cover-gif-frame img {
-        width: 100%; height: 100%;
-        object-fit: cover; display: block;
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative;
+        z-index: 1;
       }
       /* Placeholder shown when no gif */
       .gif-placeholder {
@@ -332,7 +335,7 @@
     <!-- ════ BACKGROUND MUSIC ════ -->
     <!-- Ganti src dengan nama file mp3 kamu, letakkan di folder yang sama dengan index.html -->
     <audio id="bgMusic" loop preload="auto">
-      <source src="waking_up_together.mp3" type="audio/mpeg" />
+      <source src="timur.mp3" type="audio/mpeg" />
     </audio>
 
     <!-- Music toggle button -->
@@ -445,7 +448,7 @@
           <div class="ornament-center reveal reveal-delay-1"><div class="diamond"></div></div>
           <div class="photo-grid">
             <div class="photo-slot reveal reveal-delay-1">
-              <img src="Screenshot_113.jpg" alt="Foto Utama" onerror="this.remove()" />
+              <img src="Screenshot_114.jpg" alt="Foto Utama" onerror="this.remove()" />
               <div class="ph-icon">📷</div>
               <span class="ph-label">Foto Utama (Landscape)</span>
             </div>
@@ -536,7 +539,8 @@
         <p class="closing-quote reveal reveal-delay-2">"Merupakan kebahagiaan dan kehormatan bagi kami, apabila Bapak / Ibu / Saudara/i berkenan hadir dan memberikan do'a restu."</p>
         <div class="closing-names reveal reveal-delay-3">Ardan &amp; Novia</div>
         <div class="closing-sub reveal reveal-delay-4">06 · 04 · 2026</div>
-        <p style="margin-top:60px;font-size:11px;color:#555;letter-spacing:1px" class="reveal reveal-delay-5">you and me, then us ✦</p>
+        <p style="margin-top:60px;font-size:11px;color:#555;letter-spacing:1px" class="reveal reveal-delay-5">you and me, then us ✦</p><br/><br/><br/>
+        <p style="margin-top:24px;font-size:11px;color:#444;letter-spacing:1px" class="reveal reveal-delay-5">Made with ❤️ by Ardan</p>
       </section>
 
     </div><!-- /#main -->
