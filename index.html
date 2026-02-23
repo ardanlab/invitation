@@ -1,0 +1,1224 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Undangan Pernikahan – Ardan & Novia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500&family=Lato:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --cream: #faf6f0;
+        --warm-white: #fffdf8;
+        --gold: #c9a96e;
+        --gold-light: #e8d5b0;
+        --dark: #1a1714;
+        --gray: #5a554e;
+        --gray-light: #9a9490;
+        --border: #e0d8cc;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Lato", sans-serif;
+        background: var(--cream);
+        color: var(--dark);
+        overflow-x: hidden;
+      }
+
+      /* ── COVER PAGE ── */
+      #cover {
+        min-height: 100vh;
+        background: var(--dark);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        padding: 40px 24px;
+      }
+
+      #cover::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse 60% 40% at 50% 0%,
+            rgba(201, 169, 110, 0.18) 0%,
+            transparent 70%
+          ),
+          radial-gradient(
+            ellipse 40% 30% at 50% 100%,
+            rgba(201, 169, 110, 0.12) 0%,
+            transparent 60%
+          );
+      }
+
+      .cover-ornament {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        opacity: 0.06;
+        background-image: repeating-linear-gradient(
+          45deg,
+          var(--gold) 0,
+          var(--gold) 1px,
+          transparent 0,
+          transparent 50%
+        );
+        background-size: 20px 20px;
+      }
+
+      .cover-border {
+        position: absolute;
+        inset: 16px;
+        border: 1px solid rgba(201, 169, 110, 0.3);
+        pointer-events: none;
+      }
+      .cover-border::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 1px solid rgba(201, 169, 110, 0.15);
+      }
+
+      .cover-to {
+        font-family: "Lato", sans-serif;
+        font-size: 12px;
+        letter-spacing: 4px;
+        color: var(--gold-light);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.3s forwards;
+      }
+
+      .cover-guest {
+        font-family: "Cormorant+Garamond", "Cormorant Garamond", serif;
+        font-size: clamp(22px, 5vw, 36px);
+        font-weight: 300;
+        color: #fff;
+        font-style: italic;
+        margin-bottom: 40px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.5s forwards;
+      }
+
+      .cover-line {
+        width: 60px;
+        height: 1px;
+        background: var(--gold);
+        margin: 0 auto 40px;
+        opacity: 0;
+        animation: scaleX 0.8s 0.7s forwards;
+        transform-origin: center;
+        transform: scaleX(0);
+      }
+
+      .cover-label {
+        font-family: "Cinzel", serif;
+        font-size: 10px;
+        letter-spacing: 6px;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeUp 0.8s 0.9s forwards;
+      }
+
+      .cover-names {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(42px, 10vw, 80px);
+        font-weight: 300;
+        color: #fff;
+        line-height: 1.05;
+        margin-bottom: 24px;
+        opacity: 0;
+        animation: fadeUp 0.9s 1.1s forwards;
+      }
+
+      .cover-names span {
+        display: block;
+        font-style: italic;
+        font-size: 0.55em;
+        color: var(--gold-light);
+        font-weight: 300;
+        letter-spacing: 2px;
+        margin-bottom: -8px;
+      }
+
+      .cover-date {
+        font-family: "Cinzel", serif;
+        font-size: clamp(13px, 2.5vw, 16px);
+        letter-spacing: 4px;
+        color: var(--gold-light);
+        margin-bottom: 48px;
+        opacity: 0;
+        animation: fadeUp 0.8s 1.3s forwards;
+      }
+
+      .btn-open {
+        display: inline-block;
+        padding: 14px 40px;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        font-family: "Cinzel", serif;
+        font-size: 11px;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+        cursor: pointer;
+        background: transparent;
+        transition: all 0.4s;
+        opacity: 0;
+        animation: fadeUp 0.8s 1.5s forwards;
+      }
+
+      .btn-open:hover {
+        background: var(--gold);
+        color: var(--dark);
+      }
+
+      /* ── MAIN CONTENT ── */
+      #main {
+        display: none;
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 80px 24px;
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .section-label {
+        font-family: "Cinzel", serif;
+        font-size: 10px;
+        letter-spacing: 5px;
+        color: var(--gold);
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 16px;
+      }
+
+      .ornament-center {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        justify-content: center;
+        margin-bottom: 40px;
+      }
+      .ornament-center::before,
+      .ornament-center::after {
+        content: "";
+        flex: 1;
+        max-width: 80px;
+        height: 1px;
+        background: var(--gold);
+        opacity: 0.5;
+      }
+      .ornament-center .diamond {
+        width: 6px;
+        height: 6px;
+        background: var(--gold);
+        transform: rotate(45deg);
+        flex-shrink: 0;
+      }
+
+      /* ── BISMILLAH SECTION ── */
+      #bismillah {
+        text-align: center;
+        background: var(--dark);
+        max-width: 100%;
+        padding: 70px 24px;
+      }
+
+      #bismillah .arabic {
+        font-size: clamp(28px, 6vw, 46px);
+        color: var(--gold);
+        font-family: "Cormorant Garamond", serif;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      #bismillah .quran {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(14px, 2.5vw, 16px);
+        color: #ccc;
+        line-height: 1.9;
+        max-width: 500px;
+        margin: 0 auto 12px;
+      }
+
+      #bismillah .quran-ref {
+        font-family: "Cinzel", serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--gold);
+        opacity: 0.7;
+      }
+
+      /* ── COUPLE SECTION ── */
+      #couple {
+        text-align: center;
+      }
+
+      .couple-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 8vw, 60px);
+        font-weight: 300;
+        line-height: 1.1;
+        margin-bottom: 8px;
+      }
+
+      .couple-subtitle {
+        font-size: 12px;
+        color: var(--gray-light);
+        letter-spacing: 2px;
+        margin-bottom: 60px;
+      }
+
+      .couple-grid {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        gap: 0 24px;
+        align-items: center;
+        margin-bottom: 48px;
+      }
+
+      .person {
+        text-align: center;
+      }
+
+      .person-photo {
+        width: 100%;
+        max-width: 180px;
+        aspect-ratio: 3/4;
+        object-fit: cover;
+        filter: grayscale(100%);
+        margin: 0 auto 16px;
+        display: block;
+        border: 1px solid var(--border);
+      }
+
+      .person-photo-placeholder {
+        width: 100%;
+        max-width: 180px;
+        aspect-ratio: 3/4;
+        background: var(--border);
+        margin: 0 auto 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 8px;
+        border: 1px dashed var(--gray-light);
+      }
+
+      .person-photo-placeholder span {
+        font-size: 11px;
+        color: var(--gray-light);
+        letter-spacing: 1px;
+        text-align: center;
+        padding: 0 8px;
+      }
+
+      .person-name {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(22px, 4.5vw, 32px);
+        font-weight: 400;
+        line-height: 1.2;
+        margin-bottom: 6px;
+      }
+
+      .person-parents {
+        font-size: 12px;
+        color: var(--gray);
+        line-height: 1.7;
+      }
+
+      .person-parents em {
+        display: block;
+        font-style: italic;
+        color: var(--gray-light);
+        font-size: 11px;
+        margin-top: 2px;
+      }
+
+      .couple-and {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 48px;
+        font-weight: 300;
+        font-style: italic;
+        color: var(--gold);
+        line-height: 1;
+      }
+
+      /* ── PHOTO SECTION ── */
+      #photos {
+        max-width: 100%;
+        padding: 0;
+        background: #f0ebe3;
+      }
+
+      .photo-inner {
+        max-width: 680px;
+        margin: 0 auto;
+        padding: 60px 24px;
+        text-align: center;
+      }
+
+      .photo-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto;
+        gap: 8px;
+        margin-top: 32px;
+      }
+
+      .photo-slot {
+        aspect-ratio: 4/5;
+        background: #ddd;
+        overflow: hidden;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .photo-slot:first-child {
+        grid-column: span 2;
+        aspect-ratio: 16/7;
+      }
+
+      .photo-slot img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%);
+        display: block;
+      }
+
+      .photo-slot-label {
+        font-size: 11px;
+        color: #999;
+        letter-spacing: 2px;
+        text-align: center;
+      }
+
+      .photo-slot-icon {
+        font-size: 28px;
+        opacity: 0.3;
+      }
+
+      /* ── DATE / WAKTU SECTION ── */
+      #waktu {
+        text-align: center;
+        background: var(--warm-white);
+        max-width: 100%;
+        padding: 80px 24px;
+      }
+
+      .waktu-inner {
+        max-width: 680px;
+        margin: 0 auto;
+      }
+
+      .big-date {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(48px, 12vw, 96px);
+        font-weight: 300;
+        color: var(--dark);
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .big-date-sub {
+        font-family: "Cinzel", serif;
+        font-size: clamp(11px, 2vw, 13px);
+        letter-spacing: 6px;
+        color: var(--gold);
+        margin-bottom: 48px;
+      }
+
+      .events-row {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 0;
+        border: 1px solid var(--border);
+        margin-bottom: 40px;
+      }
+
+      .event-item {
+        padding: 32px 24px;
+        text-align: center;
+      }
+
+      .event-divider {
+        background: var(--border);
+      }
+
+      .event-type {
+        font-family: "Cinzel", serif;
+        font-size: 10px;
+        letter-spacing: 4px;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .event-time {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(30px, 7vw, 48px);
+        font-weight: 300;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+
+      .event-tz {
+        font-size: 11px;
+        color: var(--gray-light);
+        letter-spacing: 2px;
+      }
+
+      .location-box {
+        border: 1px solid var(--border);
+        padding: 28px 24px;
+        text-align: center;
+        margin-bottom: 24px;
+      }
+
+      .location-box p {
+        font-size: 14px;
+        color: var(--gray);
+        line-height: 1.8;
+      }
+
+      .btn-maps {
+        display: inline-block;
+        padding: 12px 32px;
+        border: 1px solid var(--dark);
+        color: var(--dark);
+        font-family: "Cinzel", serif;
+        font-size: 10px;
+        letter-spacing: 4px;
+        cursor: pointer;
+        background: transparent;
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .btn-maps:hover {
+        background: var(--dark);
+        color: #fff;
+      }
+
+      /* ── COUNTDOWN ── */
+      #countdown {
+        text-align: center;
+        background: var(--dark);
+        max-width: 100%;
+        padding: 70px 24px;
+      }
+
+      #countdown .section-label {
+        color: var(--gold);
+      }
+
+      .countdown-row {
+        display: flex;
+        justify-content: center;
+        gap: clamp(16px, 4vw, 48px);
+        margin-top: 32px;
+      }
+
+      .countdown-item {
+        text-align: center;
+      }
+
+      .countdown-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(48px, 10vw, 80px);
+        font-weight: 300;
+        color: #fff;
+        line-height: 1;
+        min-width: 2ch;
+      }
+
+      .countdown-lbl {
+        font-size: 10px;
+        letter-spacing: 3px;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-top: 4px;
+      }
+
+      .countdown-sep {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(40px, 8vw, 70px);
+        color: var(--gold);
+        opacity: 0.4;
+        align-self: flex-start;
+        padding-top: 4px;
+        line-height: 1;
+      }
+
+      /* ── GIFT SECTION ── */
+      #gift {
+        text-align: center;
+        background: var(--cream);
+        max-width: 100%;
+        padding: 80px 24px;
+      }
+
+      .gift-inner {
+        max-width: 540px;
+        margin: 0 auto;
+      }
+
+      .gift-note {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: 16px;
+        color: var(--gray);
+        line-height: 1.8;
+        margin-bottom: 48px;
+      }
+
+      .bank-card {
+        border: 1px solid var(--border);
+        padding: 28px;
+        margin-bottom: 16px;
+        text-align: left;
+        background: var(--warm-white);
+        position: relative;
+      }
+
+      .bank-name {
+        font-family: "Cinzel", serif;
+        font-size: 11px;
+        letter-spacing: 3px;
+        color: var(--gold);
+        margin-bottom: 8px;
+      }
+
+      .bank-account-name {
+        font-size: 15px;
+        font-weight: 400;
+        margin-bottom: 4px;
+      }
+
+      .bank-number {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 26px;
+        font-weight: 300;
+        letter-spacing: 2px;
+        color: var(--dark);
+      }
+
+      .btn-copy {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        padding: 8px 18px;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        font-family: "Cinzel", serif;
+        font-size: 9px;
+        letter-spacing: 3px;
+        cursor: pointer;
+        background: transparent;
+        transition: all 0.3s;
+      }
+
+      .btn-copy:hover,
+      .btn-copy.copied {
+        background: var(--gold);
+        color: #fff;
+      }
+
+      /* ── CLOSING ── */
+      #closing {
+        text-align: center;
+        background: var(--dark);
+        max-width: 100%;
+        padding: 80px 24px 100px;
+      }
+
+      .closing-quote {
+        font-family: "Cormorant Garamond", serif;
+        font-style: italic;
+        font-size: clamp(18px, 4vw, 26px);
+        color: #fff;
+        line-height: 1.7;
+        max-width: 440px;
+        margin: 0 auto 40px;
+      }
+
+      .closing-names {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 8vw, 60px);
+        font-weight: 300;
+        color: var(--gold);
+        margin-bottom: 16px;
+      }
+
+      .closing-sub {
+        font-size: 12px;
+        letter-spacing: 3px;
+        color: #888;
+        text-transform: uppercase;
+      }
+
+      /* ── ANIMATIONS ── */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes scaleX {
+        from {
+          opacity: 0;
+          transform: scaleX(0);
+        }
+        to {
+          opacity: 1;
+          transform: scaleX(1);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .reveal-delay-1 {
+        transition-delay: 0.1s;
+      }
+      .reveal-delay-2 {
+        transition-delay: 0.2s;
+      }
+      .reveal-delay-3 {
+        transition-delay: 0.3s;
+      }
+      .reveal-delay-4 {
+        transition-delay: 0.4s;
+      }
+      .reveal-delay-5 {
+        transition-delay: 0.5s;
+      }
+
+      /* ── NAV ── */
+      .floating-nav {
+        position: fixed;
+        bottom: 24px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 2px;
+        background: rgba(26, 23, 20, 0.92);
+        border: 1px solid rgba(201, 169, 110, 0.3);
+        padding: 10px 16px;
+        z-index: 100;
+        backdrop-filter: blur(10px);
+      }
+
+      .floating-nav a {
+        font-family: "Cinzel", serif;
+        font-size: 9px;
+        letter-spacing: 2px;
+        color: var(--gold-light);
+        text-decoration: none;
+        padding: 6px 10px;
+        transition: color 0.2s;
+        white-space: nowrap;
+      }
+
+      .floating-nav a:hover {
+        color: var(--gold);
+      }
+
+      @media (max-width: 500px) {
+        .floating-nav {
+          display: none;
+        }
+        .couple-grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto auto auto;
+        }
+        .couple-and {
+          font-size: 36px;
+        }
+        .events-row {
+          grid-template-columns: 1fr;
+        }
+        .event-divider {
+          width: 100%;
+          height: 1px;
+        }
+        .photo-grid {
+          grid-template-columns: 1fr;
+        }
+        .photo-slot:first-child {
+          grid-column: span 1;
+          aspect-ratio: 4/3;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .countdown-row {
+          gap: 10px;
+        }
+        .countdown-sep {
+          display: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════════ COVER ═══════════ -->
+    <div id="cover">
+      <div class="cover-ornament"></div>
+      <div class="cover-border"></div>
+
+      <div class="cover-to">Kepada Yth.</div>
+      <div class="cover-guest" id="guestName">Bapak / Ibu / Saudara/i</div>
+      <div class="cover-line"></div>
+      <!-- <div class="cover-label">The Wedding Of</div> -->
+      <div class="cover-names">
+        <span>The Wedding Of</span><br />
+        <!-- <span>Ardan Anjung Kusuma &amp; Novia Kusumawardani</span> -->
+        Ardan Anjung Kusuma<br />&amp; <br />Novia Kusumawardani
+      </div>
+      <div class="cover-date">Senin &nbsp;/&nbsp; 06 . 04 . 2026</div>
+      <button class="btn-open" onclick="openInvitation()">Buka Undangan</button>
+    </div>
+
+    <!-- ═══════════ MAIN ═══════════ -->
+    <div id="main">
+      <!-- NAV -->
+      <nav class="floating-nav">
+        <a href="#couple">Mempelai</a>
+        <a href="#waktu">Waktu</a>
+        <a href="#countdown">Hitung Mundur</a>
+        <a href="#gift">Hadiah</a>
+      </nav>
+
+      <!-- BISMILLAH -->
+      <section id="bismillah">
+        <div class="section-label reveal">Dengan Rahmat Allah SWT</div>
+        <div class="arabic reveal reveal-delay-1">
+          بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ
+        </div>
+        <p class="quran reveal reveal-delay-2">
+          "Dan diantara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untuk
+          kamu pasangan hidup dari jenismu sendiri, supaya kamu mendapat
+          ketenangan dan dijadikan-Nya diantara kamu kasih sayang. Sesungguhnya
+          yang demikian itu merupakan tanda-tanda kebesaran-Nya bagi orang-orang
+          yang berfikir."
+        </p>
+        <div class="quran-ref reveal reveal-delay-3">( QS. Ar Ruum : 21 )</div>
+      </section>
+
+      <!-- COUPLE -->
+      <section id="couple">
+        <div class="section-label reveal">Getting Married</div>
+        <div class="ornament-center reveal reveal-delay-1">
+          <div class="diamond"></div>
+        </div>
+
+        <div class="couple-grid reveal reveal-delay-2">
+          <!-- Pria -->
+          <div class="person">
+            <div class="person-photo-placeholder" id="photoMale">
+              <div class="photo-slot-icon">📷</div>
+              <span>Foto Ardan</span>
+            </div>
+            <div class="person-name">Ardan Anjung<br />Kusuma</div>
+            <div class="person-parents">
+              Putra dari<br />
+              Bapak Benny Kusuma Yaja<br />
+              &amp; Ibu Defie Erna Susanti
+              <em>Jl. Sersan Kusman, Bojonegoro, Jawa Timur</em>
+            </div>
+          </div>
+
+          <!-- & -->
+          <div class="couple-and">&amp;</div>
+
+          <!-- Wanita -->
+          <div class="person">
+            <div class="person-photo-placeholder" id="photoFemale">
+              <div class="photo-slot-icon">📷</div>
+              <span>Foto Novia</span>
+            </div>
+            <div class="person-name">Novia<br />Kusumawardani</div>
+            <div class="person-parents">
+              Putri dari<br />
+              Bapak Kusdadi<br />
+              &amp; Ibu Watini
+              <em>Gelam Jaya, Pasar Kemis, Tangerang</em>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PHOTOS -->
+      <section id="photos">
+        <div class="photo-inner">
+          <div class="section-label reveal">Foto Bersama</div>
+          <div class="ornament-center reveal reveal-delay-1">
+            <div class="diamond"></div>
+          </div>
+
+          <div class="photo-grid">
+            <div class="photo-slot reveal reveal-delay-1" id="photoMain">
+              <div class="photo-slot-icon">📷</div>
+              <span class="photo-slot-label">Foto Utama<br />(Landscape)</span>
+            </div>
+            <div class="photo-slot reveal reveal-delay-2" id="photo2">
+              <div class="photo-slot-icon">📷</div>
+              <span class="photo-slot-label">Foto 2</span>
+            </div>
+            <div class="photo-slot reveal reveal-delay-3" id="photo3">
+              <div class="photo-slot-icon">📷</div>
+              <span class="photo-slot-label">Foto 3</span>
+            </div>
+          </div>
+
+          <p
+            style="
+              margin-top: 20px;
+              font-size: 11px;
+              color: var(--gray-light);
+              letter-spacing: 1px;
+            "
+          >
+            * Ganti src foto pada elemen #photoMain, #photo2, #photo3 dengan URL
+            foto Anda
+          </p>
+        </div>
+      </section>
+
+      <!-- WAKTU & TEMPAT -->
+      <section id="waktu">
+        <div class="waktu-inner">
+          <div class="section-label reveal">Save The Date</div>
+          <div class="ornament-center reveal reveal-delay-1">
+            <div class="diamond"></div>
+          </div>
+
+          <div class="big-date reveal reveal-delay-2">06.04</div>
+          <div class="big-date-sub reveal reveal-delay-2">
+            SENIN &nbsp;·&nbsp; 2026
+          </div>
+
+          <div class="events-row reveal reveal-delay-3">
+            <div class="event-item">
+              <div class="event-type">Akad Nikah</div>
+              <div class="event-time">08.00</div>
+              <div class="event-tz">WIB</div>
+            </div>
+            <div class="event-divider"></div>
+            <div class="event-item">
+              <div class="event-type">Resepsi Pernikahan</div>
+              <div class="event-time">10.00</div>
+              <div class="event-tz">WIB</div>
+            </div>
+          </div>
+
+          <div class="location-box reveal reveal-delay-4">
+            <div class="section-label" style="margin-bottom: 12px">Lokasi</div>
+            <p>
+              Kp. Gelam Timur RT. 02 / RW. 03 Nomor 121<br />
+              Desa Gelam Jaya, Kecamatan Pasarkemis<br />
+              Kabupaten Tangerang, Provinsi Banten
+            </p>
+          </div>
+
+          <div class="reveal reveal-delay-5" style="text-align: center">
+            <a
+              class="btn-maps"
+              href="https://maps.google.com/?q=Desa+Gelam+Jaya+Pasar+Kemis+Tangerang"
+              target="_blank"
+            >
+              Buka Google Maps
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COUNTDOWN -->
+      <section id="countdown">
+        <div class="section-label reveal">Menuju Hari Bahagia</div>
+        <div class="ornament-center reveal reveal-delay-1">
+          <div class="diamond" style="background: var(--gold)"></div>
+        </div>
+
+        <div class="countdown-row reveal reveal-delay-2">
+          <div class="countdown-item">
+            <div class="countdown-num" id="cd-days">00</div>
+            <div class="countdown-lbl">Hari</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <div class="countdown-num" id="cd-hours">00</div>
+            <div class="countdown-lbl">Jam</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <div class="countdown-num" id="cd-mins">00</div>
+            <div class="countdown-lbl">Menit</div>
+          </div>
+          <div class="countdown-sep">:</div>
+          <div class="countdown-item">
+            <div class="countdown-num" id="cd-secs">00</div>
+            <div class="countdown-lbl">Detik</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- GIFT / HADIAH -->
+      <section id="gift">
+        <div class="gift-inner">
+          <div class="section-label reveal">Online Gift</div>
+          <div class="ornament-center reveal reveal-delay-1">
+            <div class="diamond"></div>
+          </div>
+
+          <p class="gift-note reveal reveal-delay-2">
+            Tanpa mengurangi rasa hormat, bagi Anda yang ingin memberikan
+            hadiah, kami dengan rendah hati menerima melalui transfer berikut.
+          </p>
+
+          <!-- Bank 1 -->
+          <div class="bank-card reveal reveal-delay-3">
+            <div class="bank-name">BCA</div>
+            <div class="bank-account-name">Ardan Anjung Kusuma</div>
+            <div class="bank-number">1234 5678 90</div>
+            <button class="btn-copy" onclick="copyNorek(this, '1234567890')">
+              SALIN
+            </button>
+          </div>
+
+          <!-- Bank 2 -->
+          <div class="bank-card reveal reveal-delay-4">
+            <div class="bank-name">MANDIRI</div>
+            <div class="bank-account-name">Novia Kusumawardani</div>
+            <div class="bank-number">0987 6543 21</div>
+            <button class="btn-copy" onclick="copyNorek(this, '0987654321')">
+              SALIN
+            </button>
+          </div>
+
+          <p
+            style="
+              font-size: 11px;
+              color: var(--gray-light);
+              margin-top: 20px;
+              letter-spacing: 1px;
+            "
+          >
+            * Ganti nomor rekening sesuai data asli Anda
+          </p>
+        </div>
+      </section>
+
+      <!-- CLOSING -->
+      <section id="closing">
+        <div class="section-label reveal" style="color: var(--gold)">
+          Terima Kasih
+        </div>
+        <div class="ornament-center reveal reveal-delay-1">
+          <div class="diamond" style="background: var(--gold)"></div>
+        </div>
+
+        <p class="closing-quote reveal reveal-delay-2">
+          "Merupakan kebahagiaan dan kehormatan bagi kami, apabila Bapak / Ibu /
+          Saudara/i berkenan hadir dan memberikan do'a restu."
+        </p>
+
+        <div class="closing-names reveal reveal-delay-3">Ardan &amp; Novia</div>
+        <div class="closing-sub reveal reveal-delay-4">06 · 04 · 2026</div>
+
+        <p
+          style="
+            margin-top: 60px;
+            font-size: 11px;
+            color: #555;
+            letter-spacing: 1px;
+          "
+          class="reveal reveal-delay-5"
+        >
+          you and me, then us ✦
+        </p>
+      </section>
+    </div>
+    <!-- /#main -->
+
+    <script>
+      // ── GET GUEST NAME FROM URL ──
+      (function () {
+        const params = new URLSearchParams(window.location.search);
+        const to = params.get("to");
+        if (to) {
+          document.getElementById("guestName").textContent = to;
+        }
+      })();
+
+      // ── OPEN INVITATION ──
+      function openInvitation() {
+        const cover = document.getElementById("cover");
+        const main = document.getElementById("main");
+
+        cover.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+        cover.style.opacity = "0";
+        cover.style.transform = "scale(1.04)";
+
+        setTimeout(() => {
+          cover.style.display = "none";
+          main.style.display = "block";
+          window.scrollTo(0, 0);
+          initReveal();
+          initCountdown();
+        }, 700);
+      }
+
+      // ── SCROLL REVEAL ──
+      function initReveal() {
+        const items = document.querySelectorAll(".reveal");
+        const obs = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add("visible");
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.15 },
+        );
+
+        items.forEach((el) => obs.observe(el));
+
+        // Trigger visible ones immediately
+        setTimeout(() => {
+          items.forEach((el) => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+              el.classList.add("visible");
+            }
+          });
+        }, 100);
+      }
+
+      // ── COUNTDOWN ──
+      function initCountdown() {
+        const target = new Date("2026-04-06T08:00:00+07:00").getTime();
+
+        function pad(n) {
+          return String(n).padStart(2, "0");
+        }
+
+        function tick() {
+          const now = Date.now();
+          const diff = target - now;
+
+          if (diff <= 0) {
+            document.getElementById("cd-days").textContent = "00";
+            document.getElementById("cd-hours").textContent = "00";
+            document.getElementById("cd-mins").textContent = "00";
+            document.getElementById("cd-secs").textContent = "00";
+            return;
+          }
+
+          const days = Math.floor(diff / 86400000);
+          const hours = Math.floor((diff % 86400000) / 3600000);
+          const mins = Math.floor((diff % 3600000) / 60000);
+          const secs = Math.floor((diff % 60000) / 1000);
+
+          document.getElementById("cd-days").textContent = pad(days);
+          document.getElementById("cd-hours").textContent = pad(hours);
+          document.getElementById("cd-mins").textContent = pad(mins);
+          document.getElementById("cd-secs").textContent = pad(secs);
+        }
+
+        tick();
+        setInterval(tick, 1000);
+      }
+
+      // ── COPY NOREK ──
+      function copyNorek(btn, number) {
+        navigator.clipboard
+          .writeText(number)
+          .then(() => {
+            const original = btn.textContent;
+            btn.textContent = "TERSALIN ✓";
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = original;
+              btn.classList.remove("copied");
+            }, 2200);
+          })
+          .catch(() => {
+            // Fallback
+            const ta = document.createElement("textarea");
+            ta.value = number;
+            document.body.appendChild(ta);
+            ta.select();
+            document.execCommand("copy");
+            document.body.removeChild(ta);
+            btn.textContent = "TERSALIN ✓";
+            btn.classList.add("copied");
+            setTimeout(() => {
+              btn.textContent = "SALIN";
+              btn.classList.remove("copied");
+            }, 2200);
+          });
+      }
+    </script>
+  </body>
+</html>
